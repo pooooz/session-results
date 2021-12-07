@@ -1,4 +1,5 @@
 #include <iostream>
+#include <iomanip>
 
 using namespace std;
 
@@ -17,16 +18,37 @@ int main()
     try
     {
         read("data.txt", exams, size);
+        cout << "***** Итоги сессии *****\n\n";
         for (int i = 0; i < size; i++)
         {
-            cout << exams[i]->student.last_name << '\n';
-            cout << exams[i]->student.first_name << '\n';
-            cout << exams[i]->student.middle_name << '\n';
-            cout << exams[i]->exam_day.day << ' ';
-            cout << exams[i]->exam_day.month << ' ';
-            cout << exams[i]->exam_day.year << '\n';
-            cout << exams[i]->mark << "\n";
-            cout << exams[i]->discipline << '\n';
+            /********** вывод студента **********/
+            cout << "Студент........: ";
+            // вывод фамилии
+            cout << exams[i]->student.last_name << " ";
+            // вывод первой буквы имени
+            cout << exams[i]->student.first_name[0] << ". ";
+            // вывод первой буквы отчества
+            cout << exams[i]->student.middle_name[0] << ".";
+            cout << '\n';
+            
+            // вывод дисциплины
+            cout << '"' << exams[i]->discipline << '"';
+            cout << '\n';
+
+            // вывод оценки
+            cout << "Оценка.........: ";
+            cout << exams[i]->mark;
+            cout << '\n';
+            /********** вывод даты сдачи **********/
+            // вывод года
+            cout << "Дата сдачи.....: ";
+            cout << setw(4) << setfill('0') << exams[i]->exam_day.year << '-';
+            // вывод месяца
+            cout << setw(2) << setfill('0') << exams[i]->exam_day.month << '-';
+            // вывод числа
+            cout << setw(2) << setfill('0') << exams[i]->exam_day.day;
+            cout << '\n';
+           
             cout << '\n';
         }
         for (int i = 0; i < size; i++)
