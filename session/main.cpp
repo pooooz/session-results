@@ -12,7 +12,9 @@ int main()
     setlocale(LC_ALL, "Russian");
     cout << "Лабораторная работа №8. GIT\n";
     cout << "Вариант №8. Итоги сессии\n";
-    cout << "Автор: Дмитрий Панин\n\n";
+    cout << "Автор: Дмитрий Панин\n";
+    cout << "Группа: 14\n\n";
+
     exam_info* exams[MAX_FILE_ROWS_COUNT];
     int size;
     try
