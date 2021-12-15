@@ -76,18 +76,6 @@ int process(exam_info* exams[], int size)
 		}
 	}
 
-	cout << "Дата начала сесии: ";
-	cout << setw(4) << setfill('0') << min.year << '-';
-	cout << setw(2) << setfill('0') << min.month << '-';
-	cout << setw(2) << setfill('0') << min.day;
-	cout << endl;
-
-	cout << "Дата конца сесии: ";
-	cout << setw(4) << setfill('0') << max.year << '-';
-	cout << setw(2) << setfill('0') << max.month << '-';
-	cout << setw(2) << setfill('0') << max.day;
-	cout << endl;
-
 
 	int duration = diff(min, max);
 
