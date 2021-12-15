@@ -1,6 +1,4 @@
 #include "processing.h"
-#include "iostream"
-#include "iomanip"
 
 using namespace std;
 
@@ -71,7 +69,7 @@ int process(exam_info* exams[], int size)
 		if ((exams[i]->exam_day.year > max.year) || (exams[i]->exam_day.year >= max.year && exams[i]->exam_day.month > max.month) || (exams[i]->exam_day.year >= max.year && exams[i]->exam_day.month >= max.month && exams[i]->exam_day.day > max.day)) {
 			max = exams[i]->exam_day;
 		}
-		else if ((exams[i]->exam_day.year < max.year) || (exams[i]->exam_day.year <= max.year && exams[i]->exam_day.month < max.month) || (exams[i]->exam_day.year <= max.year && exams[i]->exam_day.month <= max.month && exams[i]->exam_day.day < max.day)) {
+		else if ((exams[i]->exam_day.year < min.year) || (exams[i]->exam_day.year <= min.year && exams[i]->exam_day.month < min.month) || (exams[i]->exam_day.year <= min.year && exams[i]->exam_day.month <= min.month && exams[i]->exam_day.day < min.day)) {
 			min = exams[i]->exam_day;
 		}
 	}
