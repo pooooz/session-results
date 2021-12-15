@@ -3,6 +3,6 @@
 
 #include "exam.h"
 
-int process(exam_info* array[], int size);
+int process(exam_info* exams[],int size);
 
 #endif

@@ -7,6 +7,7 @@ using namespace std;
 #include "file_reader.h"
 #include "constants.h"
 #include "filter.h"
+#include "processing.h"
 
 int main()
 {
@@ -55,10 +56,11 @@ int main()
             cout << '\n';
         }
 
-        bool (*check_function)(exam_info*);
+        bool (*check_function)(exam_info*) = NULL;
         cout << "\nВыберите способ фильтрации данных:\n";
         cout << "1) Студенты и их оценки по дисциплине ""История Беларуси""\n";
         cout << "2) Студенты, получившие отметку 7 или выше за дисциплину\n";
+        cout << "3) Длительность сессии\n";
         cout << "\nВведите номер выбранного пункта: ";
         int item;
         cin >> item;
@@ -73,37 +75,42 @@ int main()
             check_function = check_mark_value; // присваиваем в указатель на функцию соответствующую функцию
             cout << "***** Студенты, получившие отметку 7 или выше за дисциплину *****\n\n";
             break;
+        case 3:
+            cout << "Сессия длилась " << process(exams, size) << " дня(ей)\n\n";
+            break;
         default:
             throw "Некорректный номер пункта";
         }
 
-        int new_size;
-        exam_info** filtered = filter(exams, size, check_function, new_size);
-        for (int i = 0; i < new_size; i++)
-        {
-            /********** вывод студента **********/
-            cout << "Студент........: ";
-            // вывод фамилии
-            cout << filtered[i]->student.last_name << " ";
-            // вывод первой буквы имени
-            cout << filtered[i]->student.first_name[0] << ". ";
-            // вывод первой буквы отчества
-            cout << filtered[i]->student.middle_name[0] << ".";
-            cout << '\n';
+        if (check_function) {
+            int new_size;
+            exam_info** filtered = filter(exams, size, check_function, new_size);
+            for (int i = 0; i < new_size; i++)
+            {
+                /********** вывод студента **********/
+                cout << "Студент........: ";
+                // вывод фамилии
+                cout << filtered[i]->student.last_name << " ";
+                // вывод первой буквы имени
+                cout << filtered[i]->student.first_name[0] << ". ";
+                // вывод первой буквы отчества
+                cout << filtered[i]->student.middle_name[0] << ".";
+                cout << '\n';
 
-            // вывод дисциплины
-            cout << '"' << filtered[i]->discipline << '"';
-            cout << '\n';
+                // вывод дисциплины
+                cout << '"' << filtered[i]->discipline << '"';
+                cout << '\n';
 
-            // вывод оценки
-            cout << "Оценка.........: ";
-            cout << filtered[i]->mark;
-            cout << '\n';
-            cout << '\n';
+                // вывод оценки
+                cout << "Оценка.........: ";
+                cout << filtered[i]->mark;
+                cout << '\n';
+                cout << '\n';
 
+            }
+            delete[] filtered;
         }
-        delete[] filtered;
-
+        
         for (int i = 0; i < size; i++)
         {
             delete exams[i];
