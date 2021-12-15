@@ -1,7 +1,7 @@
 #include "pch.h"
 #include "CppUnitTest.h"
 #include "../session/exam.h"
-#include "../session/processing .h"
+#include "../session/processing.h"
 
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
 
